@@ -25,10 +25,33 @@ print("Para cálculos laboratoriais com erro experimental\n")
 print("")
 print("Digite um valor de x, quando acabar, insira o valor 0")
 print("exemplo para escrever: 0.66 ou 66e-2")
+print("Caso você erre algum valor, escreve denovo com o valor certo") 
+print("e continue escrevendo que no final da pra tirar só o que está errado")
 
 while True:  
     a = input("valor de x= ")
     af = float(a) #isso aqui é proposital, com efeitos esteticos
+    if a == "0":
+        print("Os valores estão corretos? 1SIM, 2NAO")
+        certo = input("")
+        if certo == "1":
+            break
+        elif certo == "2":
+            while True: #tirar valor errado
+                print("Qual valor você quer tirar?")
+                tirar = input("")
+                xlista.remove(tirar)
+                xflista.remove(float(tirar))
+                print("Ficou assim: \n x =",xlista)
+                print("Ta certo agora? 1SIM, 2NAO")
+                certo1 = input("")
+                if certo1 == "1":
+                    break
+                elif certo1 == "2":
+                    continue
+                else:
+                    break
+        break
     if a == "0":
         break
     xlista.append(a)
@@ -39,6 +62,25 @@ while True:
     b = input("valor de y= ")
     bf = float(b)
     if b == "0":
+        print("Os valores estão corretos? 1SIM, 2NAO")
+        certo = input("")
+        if certo == "1":
+            break
+        elif certo == "2":
+            while True: #tirar valor errado
+                print("Qual valor você quer tirar?")
+                tirar = input("")
+                ylista.remove(tirar)
+                yflista.remove(float(tirar))
+                print("Ficou assim: \n x =",ylista)
+                print("Ta certo agora? 1SIM, 2NAO")
+                certo1 = input("")
+                if certo1 == "1":
+                    break
+                elif certo1 == "2":
+                    continue
+                else:
+                    break
         break 
     ylista.append(b)
     yflista.append(bf)
