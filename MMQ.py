@@ -302,6 +302,34 @@ def final():
     print("O coeficiente linear(b ± Δb) é:",beta,"±",ibeta)
     print("Dispersão média do ajuste:",vert)
     print("")
+    print("Para ver as contas intermediárias, insira 0,")
+    print("Para sair, insira 1")
+    final = input("")
+    if final == "0": #+resultados
+        print("")
+        print("media dos x(xm):", averagex)
+        print("media dos y(ym):", averagey)
+        print("Σ(xi-xm)*yi = ",alfan)
+        print("Σ(xi-xm)^2 = ",alfad)
+        print("Σ(axi+b-yi)^2 = ",vertn)
+        print("Σ(xi)^2 = ",xx)
+        print("")
+        input("Aperte ENTER para sair")
+        titulo = input("Titulo: ")
+        eixoy = input("Eixo y: ")
+        yerr = float(input("Erro do y: "))
+        eixox = input("Eixo x: ")
+        x = np.linspace(xflista[0]-(xflista[0]+xflista[-1])/10,xflista[-1]+(xflista[0]+xflista[-1])/10,100)
+        y = alfa * x + beta
+        plt.figure()
+        plt.errorbar(xflista,yflista,yerr = yerr ,c = "blue",fmt='o')
+        plt.plot(x,y,'-r',)
+        plt.title(titulo)
+        plt.xlabel(eixox)
+        plt.ylabel(eixoy)
+        plt.show()
+    else:
+        pass
 
 if __name__ == '__main__':
     intro()
