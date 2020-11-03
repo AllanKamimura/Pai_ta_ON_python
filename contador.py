@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Aug  2 11:32:25 2020
+v2. Created on Sat Aug 22 00:28:02 2020
 
 @author: allan
 """
+
+# importing all necessery modules 
+from wordcloud import WordCloud, STOPWORDS 
+import matplotlib.pyplot as plt 
 
 def arquivo():
     texto = input("Arquivo:")
@@ -53,6 +58,39 @@ def contador2(texto):
         print(i[0],i[1])
     input("Aperte ENTER para fechar")
     infile.close()
-    
+
+def contador3(texto):
+    tirar = ["de","a","aos","e","pelo","da","do","das","que","dos","as","quando","os","em","o","no","na","nos","nas","para","com","um","uma","uns","umas","para","que","como","se","mas","como","também","não","ao","por","sobre""qual","sobre","esse","essa","aquilo","aquela","isto", "isso","aquele","sim"]
+    newwords = []
+    newtext = ""
+    infile = open(texto, "r")
+    stopwords = set(STOPWORDS) 
+      
+    # iterate through the file 
+    for text in infile: 
+          
+        # typecaste each val to string 
+        text = str(text) 
+      
+        # split the value con
+        words = text.split() 
+        # Converts each token into lowercase 
+        for word in words:
+            word = word.lower()
+        # Remove words de tirar
+        newwords = [word for word in words if word not in tirar]
+        
+        newtext += " ".join(newwords)+" "
+      
+    wc = WordCloud(width = 1000, height = 1000, background_color ='white', stopwords = stopwords, contour_width=3, contour_color='steelblue').generate(newtext) 
+      
+    # plot the WordCloud image                        
+                     
+    plt.figure(figsize = (8, 8)) 
+    plt.imshow(wc) 
+    plt.axis("off") 
+    plt.tight_layout(pad = 0)
+    plt.savefig(texto + ".png", dpi = 100)
+    plt.show()
 if __name__ == '__main__':
     arquivo()
